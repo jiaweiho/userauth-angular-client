@@ -1,0 +1,32 @@
+<form class="login-form" (ngSubmit)="onSubmit()">
+  <h2>Welcome back</h2>
+  <h3>Please enter your details </h3>
+  <mat-form-field class="login-full-width" appearance="fill">
+    <mat-label>Email</mat-label>
+    <input type="email" matInput [formControl]="emailFormControl" 
+            placeholder="Ex. john.doe@example.com">
+    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      Please enter a valid email address
+    </mat-error>
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Email is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field class="login-full-width" appearance="fill">
+    <mat-label>Password</mat-label>
+    <input type="password" matInput [formControl]="passwordFormControl" 
+            placeholder="Ex. Mypassword123!">
+    <mat-error *ngIf="emailFormControl.hasError('required')">
+      Password is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  <h4>
+    Forgot password
+  </h4>
+  <div class="login-button-row">
+    <button mat-flat-button color="primary" type="submit">Login</button>
+  </div>
+  <h4>
+    Don't have an account? Sign up for free!
+  </h4>
+</form>

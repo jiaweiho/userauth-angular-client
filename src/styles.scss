@@ -2,4 +2,152 @@
 @import 'sass/mixins';
 @import 'sass/variables';
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root {
+  --header-font: Quattrocento;
+  --body-font: Quattrocento Sans;
+  --branding-color: #312094;
+  --hover-branding-color: #4E38D3;
+  --body-color: #43464A;
+  --background-color: #FCFCFC;
+  --error-color: #FF0303;
+  --success-color: #028617;
+}
+
+body {
+  background: var(--background-color);
+  margin: 0px;
+}
+
+.logo{
+  margin-top: 0px;
+  margin-bottom:56px;
+}
+
+h2 {
+font-family: var(--header-font);
+color: var(--body-color);
+font-size: 48px;
+font-weight: 800;
+margin-bottom: 4px;
+}
+
+h3 {
+  font-family: var(--body-font);
+  color: var(--body-color);
+  font-size: 16px;
+  font-weight: 400;
+  margin-top: 4px;
+  margin-bottom: 32px;
+}
+
+.email {
+font-family: var(--body-font);
+color: var(--body-color);
+font-size: 16px;
+margin-bottom: 24px;
+}
+
+.password {
+font-family: var(--body-font);
+color: var(--body-color);
+font-size: 16px;
+margin-bottom: 24px;
+}
+
+h4 {
+  font-family: var(--body-font);
+  color: var(--branding-color);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
+  margin-top: 8px;
+}
+
+h4:hover {
+color: var(--hover-branding-color)
+}
+
+.btn-login {
+  font-family: var(--body-font);
+  color: var(--background-color);
+  font-size: 16px;
+  font-weight: 700;
+  background-color: var(--branding-color);
+  display: block;
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 32px;
+  width: 100%;
+  border: none;
+  border-radius: 40px;
+  transition: 0.15s ease-out;
+}
+
+.btn-login:hover {
+background-color: var(--hover-branding-color);
+}
+
+h5 {
+  font-family: var(--body-font);
+  color: var(--body-color);
+  font-size: 16px;
+  font-weight: 400; 
+  text-align: center;
+}
+
+h5 strong{
+  color: var(--branding-color);
+}
+
+h5 strong:hover {
+  color: var(--hover-branding-color);
+}
+
+.text-block {
+background-color: var(--error-color);
+padding: 16px;
+margin-left: 56px;
+margin-right: 56px;
+border-radius: 8px;
+position: absolute;
+top: 56px;
+}
+
+p {
+font-family: var(--body-font);
+color: var(--background-color);
+font-size: 16px;
+font-weight: 700;
+}
+
+@media (max-width: 906px) {
+  body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  mat-grid-tile.ImageUSP {
+    display: none;
+  }
+
+  mat-grid-tile.WelcomeBack {
+    position: static;
+  }
+}
+
+@media (max-width: 576px) {
+  body {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  mat-grid-tile.ImageUSP {
+    display: none;
+  }
+
+  mat-grid-tile.WelcomeBack {
+    position: static;
+    
+  }
+}

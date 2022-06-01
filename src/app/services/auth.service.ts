@@ -30,9 +30,10 @@ export class AuthService {
     public login(username: string, password: string): Observable<User> {
         console.log('Login authservice...');
         
-        return this.http.post<any>(`localhost:8080/api/v1/users/login`, { username, password })
+        return this.http.post<any>(`http://localhost:8080/api/v1/users/login`, { username, password })
             .pipe(map(user => {
                 // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
+                console.log('LOGIN response from server...');
                 console.log(JSON.stringify(user));
                 
                 user.authdata = window.btoa(username + ':' + password);
@@ -40,6 +41,19 @@ export class AuthService {
                 this.userSubject.next(user);
                 this.user = user;
                 return user;
+            }));
+    }
+
+    public config(): Observable<any> {
+        console.log('Login authservice...');
+        
+        return this.http.get<any>(`http://localhost:8080/api/v1/users/config`)
+            .pipe(map(config => {
+                // store user details and basic auth credentials in local storage to keep user logged in between page refreshes
+                console.log('LOGIN response from server...');
+                console.log(JSON.stringify(config));
+                
+                return config;
             }));
     }
 

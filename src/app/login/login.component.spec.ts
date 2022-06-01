@@ -22,4 +22,16 @@ describe('LoginComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should create the app', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+    });
+  
+    it('should render title', () => {
+      const fixture = TestBed.createComponent(LoginComponent);
+      fixture.detectChanges();
+      const compiled = fixture.nativeElement as HTMLElement;
+      expect(compiled.querySelector('.email')?.textContent).toContain('Email');
+    });
 });

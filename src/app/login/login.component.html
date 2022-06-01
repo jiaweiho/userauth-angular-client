@@ -1,32 +1,67 @@
-<form class="login-form" (ngSubmit)="onSubmit()">
-  <h2>Welcome back</h2>
-  <h3>Please enter your details </h3>
-  <mat-form-field class="login-full-width" appearance="fill">
-    <mat-label>Email</mat-label>
-    <input type="email" matInput [formControl]="emailFormControl" 
-            placeholder="Ex. john.doe@example.com">
-    <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-      Please enter a valid email address
-    </mat-error>
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Email is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <mat-form-field class="login-full-width" appearance="fill">
-    <mat-label>Password</mat-label>
-    <input type="password" matInput [formControl]="passwordFormControl" 
-            placeholder="Ex. Mypassword123!">
-    <mat-error *ngIf="emailFormControl.hasError('required')">
-      Password is <strong>required</strong>
-    </mat-error>
-  </mat-form-field>
-  <h4>
-    Forgot password
-  </h4>
-  <div class="login-button-row">
-    <button mat-flat-button color="primary" type="submit">Login</button>
-  </div>
-  <h4>
-    Don't have an account? Sign up for free!
-  </h4>
-</form>
+<mat-grid-list cols="2" rowHeight="100%">
+  <mat-grid-tile class="WelcomeBack">
+
+    <div class="text-block" *ngIf="failedAttempt > 0 && failedAttempt < maxAttempts">
+      <p>You have {{failedAttempt}} more attempt to login. To avoid your account being blocked, please check your email
+        and password.</p>
+    </div>
+
+    <form class="login-form" (ngSubmit)="onSubmit()">
+
+      <img class="logo" src="assets/img/LogoWebBuilder.svg" alt="Logo" />
+
+      <ng-container *ngIf="failedAttempt >= maxAttempts">
+        <h2>Oh no!</h2>
+        <div>
+          It seems like you have hit the max limit to attempt to
+          login. We have block your account at the moment
+          for security reasons. Please wait before you can try to login again.
+        </div>
+        <div>
+          Please wait for {{blockDuration}} minutes
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="failedAttempt < maxAttempts">
+        <h2>Welcome back</h2>
+        <h3>Please enter your details to login. </h3>
+        <mat-form-field class="login-full-width" appearance="fill">
+          <mat-label class="email">Email</mat-label>
+          <input type="email" matInput [formControl]="emailFormControl" placeholder="Eg: john.doe@example.com">
+          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+          <mat-error *ngIf="emailFormControl.hasError('required')">
+            Email is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="login-full-width" appearance="fill">
+          <mat-label class="password">Password</mat-label>
+          <input type="password" matInput [formControl]="passwordFormControl" placeholder="Eg: Mypassword123!">
+          <mat-error *ngIf="emailFormControl.hasError('required') && !passwordFormControl.hasError('required')">
+            Password is <strong>required</strong>
+          </mat-error>
+        </mat-form-field>
+        <h4>
+          Forgot password
+        </h4>
+        <div class="login-button-row">
+          <button mat-flat-button color="primary" type="submit" class="btn-login">Login</button>
+        </div>
+        <h5>
+          Don't have an account? <strong id="signup">Sign up for free!</strong>
+        </h5>
+      </ng-container>
+    </form>
+  </mat-grid-tile>
+  <ng-container *ngIf="failedAttempt >= maxAttempts">
+    <mat-grid-tile class="ImageUSP">
+      <img src="assets/img/TryAgain@2.png" alt="UniquevSelling Points" />
+    </mat-grid-tile>
+  </ng-container>
+  <ng-container *ngIf="failedAttempt < maxAttempts">
+    <mat-grid-tile class="ImageUSP">
+      <img src="assets/img/USP@2.png" alt="UniquevSelling Points" />
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>
